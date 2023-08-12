@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Support Ticket</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        h2 {
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        p {
+            margin: 5px 0;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background-color: white;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            padding: 10px;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Support Ticket - Request #{{ service_request.id }}</h1>
+    </header>
+    <main>
+        <p>Status: {{ service_request.status }}</p>
+        <p>Submitted at: {{ service_request.submitted_at }}</p>
+        <p>Resolved at: {{ service_request.resolved_at }}</p>
+        <p>Details: {{ service_request.details }}</p>
+        <hr>
+        <h2>Support Conversation</h2>
+        <ul>
+            {% for ticket in service_request.supportticket_set.all %}
+                <li>
+                    <strong>{{ ticket.agent.username }}</strong> - {{ ticket.timestamp }}<br>
+                    {{ ticket.message }}
+                </li>
+            {% endfor %}
+        </ul>
+        <form method="post">
+            {% csrf_token %}
+            <textarea name="message" rows="4" cols="50" placeholder="Enter your message"></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </main>
+</body>
+</html>

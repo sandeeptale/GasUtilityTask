@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Service Request</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        form {
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 20px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Create Service Request</h1>
+    </header>
+    <main>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="{{ form.request_type.id_for_label }}">Request Type:</label>
+            {{ form.request_type }}
+            <label for="{{ form.details.id_for_label }}">Details:</label>
+            {{ form.details }}
+            <label for="{{ form.attachment.id_for_label }}">Attachment:</label>
+            {{ form.attachment }}
+            <button type="submit">Submit Request</button>
+        </form>
+    </main>
+</body>
+</html>

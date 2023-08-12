@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2 style="margin-bottom: 20px;">Submit Service Request</h2>
+    <form method="post" enctype="multipart/form-data" style="max-width: 400px; margin: 0 auto;">
+        {% csrf_token %}
+        <label for="{{ form.request_type.id_for_label }}" style="display: block; font-weight: bold; margin-bottom: 5px;">Request Type:</label>
+        {{ form.request_type }}
+        <label for="{{ form.details.id_for_label }}" style="display: block; font-weight: bold; margin-bottom: 5px;">Details:</label>
+        {{ form.details }}
+        <label for="{{ form.attachment.id_for_label }}" style="display: block; font-weight: bold; margin-bottom: 5px;">Attachment:</label>
+        {{ form.attachment }}
+        <button type="submit" style="background-color: #333; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;">Submit Request</button>
+    </form>
+{% endblock %}
